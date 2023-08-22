@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const blogschema=mongoose.Schema({
+export const blogschema=new mongoose.Schema({
    title:{
     type:String,
     required:[true,`title is required`],
@@ -12,7 +12,11 @@ export const blogschema=mongoose.Schema({
    image:{
     type:String,
     required:[true,`image is required`],
-   }
+   },
+   user:{
+      type:mongoose.Types.ObjectId,
+      ref:'User',
+      require:[true,'user id required'],
+   },
 },{timestamps:true});
-
-const blog_model=mongoose.model("blog",blogschema);
+export const blog_model=mongoose.model("blog",blogschema);
